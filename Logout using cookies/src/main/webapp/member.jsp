@@ -1,21 +1,5 @@
-
-<%@ page language="java"
-    contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="jakarta.servlet.http.Cookie" %>
-
-<%
-    String username = (String) session.getAttribute("username");
-
-    if (username == null) {
-        response.sendRedirect(
-                request.getContextPath() + "/login.jsp");
-        return;
-    }
-
-    String sessionId = session.getId();
-%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,16 +7,31 @@
 <title>Member Area</title>
 </head>
 <body>
-
-<h2>Member Area</h2>
-
+<%
+String username = null, sessionId = null;
+Cookie[] cookies = request.getCookies();
+if(cookies != null){
+	for(Cookie cookie: cookies){
+		if(cookie.getName().equals("username")){
+			username = cookie.getValue();
+		}
+		if(cookie.getName().equals("JSESSIONID")){
+			sessionId = cookie.getValue();
+		}
+	}
+}
+if(sessionId == null || username == null){
+	response.sendRedirect("login.jsp");
+	return;
+}
+%>
 Username: <%= username %><br/>
-Session ID: <%= sessionId %><br/><br/>
+SessionId: <%= sessionId  %><br/>
 
-<form action="<%= request.getContextPath() %>/MemeberAreaController"
-      method="get">
-    <input type="hidden" name="action" value="destory">
-    <input type="submit" value="Logout">
+<h2>Member area</h2>
+<form action="<%= request.getContextPath() %>/MemberAreaController" method="get">
+	<input type = "hidden" value = "destory" name ="action">
+	<input type = "submit" value = "logout">
 </form>
 
 </body>
