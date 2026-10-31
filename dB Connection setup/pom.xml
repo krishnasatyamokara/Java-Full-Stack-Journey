@@ -1,0 +1,41 @@
+<project xmlns="https://apache.org" 
+         xmlns:xsi="https://w3.org" 
+         xsi:schemaLocation="https://apache.org https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>dB-Connection-setup</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <dependencies>
+  <!-- Source: https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
+	<dependency>
+	    <groupId>jakarta.servlet</groupId>
+	    <artifactId>jakarta.servlet-api</artifactId>
+	    <version>6.2.0-M2</version>
+	    <scope>provided</scope>
+	</dependency>
+	<!-- Source: https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>8.0.33</version>
+	    <scope>compile</scope>
+	</dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
+          <release>25</release>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.3</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>
